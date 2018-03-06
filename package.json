@@ -1,12 +1,21 @@
 {
   "name": "mk-redis-pubsub",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --exit"
   },
-  "keywords": ["redis","pubsub"],
+  "keywords": [
+    "redis",
+    "pubsub"
+  ],
   "author": "Max Bryselbout",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "mocha": "^5.0.2",
+    "redis": "^2.8.0",
+    "sinon": "^4.4.2"
+  }
 }
