@@ -30,7 +30,11 @@ class RedisPubSubClient extends EventEmitter{
           } catch (e) {
             this.data = res
           }
-          this.emit(state,this.data);
+          try {
+            this.emit(state,this.data);
+          } catch (e) {
+            this.emit('error',e);
+          }
         }
       });
     }
