@@ -21,22 +21,19 @@ class RedisPubSubClient extends EventEmitter{
   }
   dispatch(channel, state){
     if (Object.values(this.states).includes(state)) {
-      this.clientPublish.get(this.channel, (err,res)=>{
-        if (err) {
-          this.emit('error',err);
-        } else {
+      try {
+        this.clientPublish.get(this.channel, (err,res)=>{
+          if (err) throw err;
           try {
             this.data = JSON.parse(res);
           } catch (e) {
             this.data = res
           }
-          try {
-            this.emit(state,this.data);
-          } catch (e) {
-            this.emit('error',e);
-          }
-        }
-      });
+          this.emit(state,this.data);
+        });
+      } catch (e) {
+        this.emit('error',e);
+      }
     }
   }
 }
